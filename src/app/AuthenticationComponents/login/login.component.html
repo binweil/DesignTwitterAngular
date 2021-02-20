@@ -1,0 +1,23 @@
+<app-alert-banner [alertMessage]="alertMessage"
+                  [visible]="isAlertMessageVisible"
+                  (dismissEvent)="onChangeDismissAlert()">
+</app-alert-banner>
+<div>
+  <div class="imgContainer">
+    <img src="../../../assets/Avatar/login_avatar_male.png" alt="Avatar" class="avatar">
+  </div>
+  <div class="container">
+    <label><b>Username</b></label>
+    <input type="text" [(ngModel)]="user.username" placeholder="name"> <br/>
+    <label><b>Password</b></label>
+    <input type="password" [(ngModel)]="user.password" placeholder="password"> <br/>
+    <button (click)="submit()">Log In</button>
+    <label>
+      <input type="checkbox" checked="checked" name="remember"> Remember me
+    </label>
+  </div>
+  <div class="container" style="background-color:#f1f1f1">
+    <button type="button" class="cancelbtn">Cancel</button>
+    <span class="psw">Forgot <a href="/changePassword">password?</a></span>
+  </div>
+</div>

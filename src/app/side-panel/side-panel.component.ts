@@ -18,7 +18,6 @@ export class SidePanelComponent implements OnInit {
   isUserInfoHidden = true;
 
   ngOnInit(): void {
-    console.log(this.user);
     this.userOut = this.user;
   }
 

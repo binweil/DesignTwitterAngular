@@ -1,0 +1,36 @@
+<app-alert-banner [alertMessage]="alertMessage"
+                  [visible]="isAlertMessageVisible"
+                  (dismissEvent)="onChangeDismissAlert()">
+</app-alert-banner>
+<div style="border:1px solid #ccc">
+  <div class="container" *ngIf="!showConfirmationCodeModel">
+    <h1>Sign Up</h1>
+    <p>Please fill in this form to create an account.</p>
+    <hr>
+
+    <label><b>Email</b></label>
+    <input type="text" placeholder="Enter Email" [(ngModel)]="signUpRequest.attributes.email">
+
+    <label><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" [(ngModel)]="signUpRequest.username">
+
+    <label><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" [(ngModel)]="signUpRequest.password">
+
+    <label>
+      <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+    </label>
+
+    <div class="clearfix">
+      <button type="button" class="cancelbtn" (click)="cancel()">Cancel</button>
+      <button type="submit" class="signupbtn" (click)="signUp()">Sign Up</button>
+    </div>
+  </div>
+  <div class="container" *ngIf="showConfirmationCodeModel">
+    <label><b>Confirmation Code</b></label>
+    <input type="text" placeholder="Enter Confirmation Code" [(ngModel)]="confirmationCode">
+    <div class="clearfix">
+      <button type="button" class="signupbtn" (click)="confirm()">Submit</button>
+    </div>
+  </div>
+</div>
