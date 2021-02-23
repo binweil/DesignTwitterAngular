@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Auth } from 'aws-amplify';
 import { UserInfo } from '../../Model/UserInfo';
 import Util from '../../utility/util';
+import {UserCredential} from '../../Model/UserCredential';
 
 @Component({
   selector: 'app-change-password',
@@ -10,7 +11,7 @@ import Util from '../../utility/util';
 })
 export class ChangePasswordComponent implements OnInit {
 
-  user: UserInfo = {
+  user: UserCredential = {
     username: '',
     oldPassword: '',
     password: ''
