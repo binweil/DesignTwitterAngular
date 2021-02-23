@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
           }
         }
       };
-      this.httpCallServiceService.POST(this.APIUrl, param)
+      this.httpCallServiceService.PUT(this.APIUrl, param)
         .subscribe((res) => {
           this.user.age = res.Item.age;
           this.user.favoritePet = res.Item.favoritePet;
@@ -74,7 +74,7 @@ export class HomeComponent implements OnInit {
         ReturnValues: 'UPDATED_NEW'
       }
     };
-    this.httpCallServiceService.POST(this.APIUrl, param)
+    this.httpCallServiceService.PUT(this.APIUrl, param)
       .subscribe((res) => {
         window.location.reload();
       });

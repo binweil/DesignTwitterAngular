@@ -17,11 +17,15 @@ export class HttpCallServiceService {
 
   constructor(private http: HttpClient) { }
 
-  public GET(url: string): Observable<any> {
+  GET(url: string): Observable<any> {
     return this.http.get(url, this.httpOptions);
   }
 
   POST(url: string, data: any): Observable<any> {
     return this.http.post(url, data, this.httpOptions);
+  }
+
+  PUT(url: string, data: any): Observable<any> {
+    return this.http.put(url, data, this.httpOptions);
   }
 }
