@@ -1,2 +1,28 @@
-<app-side-panel [(user)]="user"></app-side-panel>
+<div class="imgContainer" xmlns="http://www.w3.org/1999/html">
+  <img src="../../../assets/Avatar/login_avatar_male.png" alt="Avatar" class="avatar">
+</div>
+<table style="width: 100%; text-align: center;">
+  <tr>
+    <th><label style="float: left"><b>Username:</b></label></th>
+    <th><label style="float: right"><b>{{user.username}}</b></label></th>
+  </tr>
+  <tr>
+    <th><label style="float: left"><b>Email:</b></label></th>
+    <th><label style="float: right"><b>{{user.email}}</b></label></th>
+  </tr>
+  <tr>
+    <th><label style="float: left"><b>Age:</b></label></th>
+    <th><input style="float: right; width: 25%" type="text" placeholder="Enter Your Age" [(ngModel)]="user.age"></th>
+  </tr>
+  <tr>
+    <th><label style="float: left"><b>Favorite Pet:</b></label></th>
+    <th><input style="float: right; width: 25%" type="text" placeholder="Enter Your Favorite Pet" [(ngModel)]="user.favoritePet"></th>
+  </tr>
 
+</table>
+<div class="container">
+  <span class="clearfix">
+    <button class="updateButton" (click)="update()">Update Info</button>
+    <button class="logoutButton" (click)="logout()">Log Out</button>
+  </span>
+</div>

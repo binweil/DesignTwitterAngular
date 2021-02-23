@@ -31,7 +31,7 @@ Amplify.configure({
     // Required only if it's different from Amazon Cognito Region
     identityPoolRegion: 'us-west-2',
 
-    // OPTIONAL - Amazon Cognito User Pool ID
+    // OPTIONAL - Amazon Cognito UserInfo Pool ID
     userPoolId: 'us-west-2_3vzP55EYn',
 
     // OPTIONAL - Amazon Cognito Web Client ID (26-char alphanumeric string)

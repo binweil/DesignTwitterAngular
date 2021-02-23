@@ -1,0 +1,9 @@
+{
+  "/api/*": {
+    "target": "https://4z6msg9g1g.execute-api.us-west-2.amazonaws.com/default",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "info",
+    "pathRewrite": {"^/api": ""}
+  }
+}

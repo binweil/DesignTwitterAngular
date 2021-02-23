@@ -4,6 +4,11 @@ export default class Util {
   public static JWT_TOKEN = 'jwtToken';
   public static APP_SESSION_STORAGE_KEY = 'twitterApp';
 
+  public static MINI_TWITTER_TABLE_NAME = 'mini-twitter-table';
+  public static DYNAMODB_LAMBDA_REQUEST_TYPE_READ = 'read';
+  public static DYNAMODB_LAMBDA_REQUEST_TYPE_UPDATE = 'update';
+  public static DYNAMODB_LAMBDA_REQUEST_TYPE_CREATE = 'create';
+
   static setCookie(name: string, val: string): void {
     const date = new Date();
     const value = val;
@@ -32,5 +37,16 @@ export default class Util {
 
     // Set it
     document.cookie = name + '=; expires=' + date.toUTCString() + '; path=/';
+  }
+
+  static isUserLoggedIn(): boolean {
+    if (sessionStorage.getItem('twitterApp') != null) {
+      return true;
+    }
+    return false;
+  }
+
+  static getUserCredentialFromSessionInString(): string {
+    return sessionStorage.getItem('twitterApp');
   }
 }

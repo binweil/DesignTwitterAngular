@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {User} from '../Model/User';
+import {UserInfo} from '../Model/UserInfo';
 
 @Component({
   selector: 'app-user-info',
@@ -8,7 +8,7 @@ import {User} from '../Model/User';
 })
 export class UserInfoComponent implements OnInit {
 
-  @Input()  user: User | {
+  @Input()  user: UserInfo | {
     username: '',
     password: '',
     id: '',

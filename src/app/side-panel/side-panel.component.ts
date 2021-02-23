@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { UserInfoComponent } from '../user-info/user-info.component';
-import {User} from '../Model/User';
+import {UserInfo} from '../Model/UserInfo';
 
 @Component({
   selector: 'app-side-panel',
@@ -11,9 +11,9 @@ export class SidePanelComponent implements OnInit {
 
   constructor() { }
 
-  @Input() user: User;
+  @Input() user: UserInfo;
 
-  @Output() userOut: User;
+  @Output() userOut: UserInfo;
 
   isUserInfoHidden = true;
 

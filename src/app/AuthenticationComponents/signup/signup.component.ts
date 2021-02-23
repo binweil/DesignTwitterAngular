@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Auth } from 'aws-amplify';
-import {User} from '../../Model/User';
+import {UserInfo} from '../../Model/UserInfo';
 import {HttpClient} from '@angular/common/http';
 import {SignUpRequestModel} from '../../Model/SignUpRequestModel';
 

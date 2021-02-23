@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Auth } from 'aws-amplify';
-import { User } from '../../Model/User';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { HttpCallServiceService } from '../../http-call-service.service';
 import Util from '../../utility/util';
+import {UserCredential} from '../../Model/UserCredential';
 
 @Component({
   selector: 'app-login',
@@ -12,11 +10,11 @@ import Util from '../../utility/util';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private http: HttpClient, private httpCallServiceService: HttpCallServiceService) { }
+  constructor() { }
 
   alertMessage = '';
   isAlertMessageVisible = false;
-  user: User = {
+  user: UserCredential = {
     username: '',
     password: ''
   };
@@ -27,18 +25,14 @@ export class LoginComponent implements OnInit {
   async submit(): Promise<void> {
     try {
       const user = await Auth.signIn(this.user.username, this.user.password);
-      console.log(user);
       Util.setCookie(Util.JWT_TOKEN, user.getSignInUserSession().getAccessToken().getJwtToken());
       sessionStorage.setItem(Util.APP_SESSION_STORAGE_KEY, JSON.stringify(user));
+      window.location.href = '/home';
     } catch (error) {
       this.alertMessage = error.log || error.message;
       this.isAlertMessageVisible = true;
       console.log('error signing in', error);
     }
-    // this.httpCallServiceService.POST('http://localhost:8080/JSON/login-cognito-user', param).pipe(
-    //   tap(response => this.processLoginSuccess(response)),
-    //   catchError(this.processLoginError)
-    // ).subscribe();
   }
 
   async logout(): Promise<void> {
