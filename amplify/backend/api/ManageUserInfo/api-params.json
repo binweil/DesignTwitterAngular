@@ -1,0 +1,35 @@
+{
+    "paths": [
+        {
+            "name": "/manageUserInfo",
+            "lambdaFunction": "minitwitterbackend714e38e0",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/manageUserInfo"
+        }
+    ],
+    "resourceName": "ManageUserInfo",
+    "apiName": "ManageUserInfo",
+    "functionArns": [
+        {
+            "lambdaFunction": "minitwitterbackend714e38e0"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-minitwitterbackend-dev-03110-authRole",
+        "unAuthRoleName": "amplify-minitwitterbackend-dev-03110-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "minitwitterbackend714e38e0",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}

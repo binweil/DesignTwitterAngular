@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-minitwitterbackend-dev-03110-authRole",
+      "UnauthRoleArn": "arn:aws:iam::057559841507:role/amplify-minitwitterbackend-dev-03110-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::057559841507:role/amplify-minitwitterbackend-dev-03110-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-minitwitterbackend-dev-03110-deployment",
+      "UnauthRoleName": "amplify-minitwitterbackend-dev-03110-unauthRole",
+      "StackName": "amplify-minitwitterbackend-dev-03110",
+      "StackId": "arn:aws:cloudformation:us-west-2:057559841507:stack/amplify-minitwitterbackend-dev-03110/7cb46370-75b1-11eb-ae25-0afc95244fe9",
+      "AmplifyAppId": "dix8enws6mqxm"
+    },
+    "categories": {
+      "function": {
+        "minitwitterbackend714e38e0": {
+          "deploymentBucketName": "amplify-minitwitterbackend-dev-03110-deployment",
+          "s3Key": "amplify-builds/minitwitterbackend714e38e0-5869332b6a6e2b75534b-build.zip"
+        }
+      }
+    }
+  }
+}
