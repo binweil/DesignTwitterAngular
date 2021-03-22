@@ -5,5 +5,12 @@
     "changeOrigin": true,
     "logLevel": "info",
     "pathRewrite": {"^/api": ""}
+  },
+  "/s3/*": {
+    "target": "https://s3.us-east-2.amazonaws.com/static-website-lamy",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "info",
+    "pathRewrite": {"^/s3": ""}
   }
 }

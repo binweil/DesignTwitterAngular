@@ -1,7 +1,7 @@
-import {Component, OnInit, Output, EventEmitter} from '@angular/core';
-import {HttpCallServiceService} from '../http-call-service.service';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { HttpCallServiceService } from '../http-call-service.service';
 import { Auth } from 'aws-amplify';
-import {UserInfo} from '../Model/UserInfo';
+import { UserInfo } from '../Model/UserInfo';
 import Util from '../utility/util';
 import { DynamodbGetRequest } from '../Model/DynamodbGetRequest';
 import { DynamodbUpdateRequest } from '../Model/DynamodbUpdateRequest';
@@ -21,10 +21,13 @@ export class HomeComponent implements OnInit {
     username: '',
     email: '',
     age: '',
-    favoritePet: ''
+    favoritePet: '',
+    wishList: ['']
   };
 
-  APIUrl = '/api/mini-twitter-DynamoDB-IO';
+  wishList: [];
+
+  APIUrl = 'https://z002cbm7ih.execute-api.us-west-2.amazonaws.com/Beta';
 
   ngOnInit(): void {
     if (!Util.isUserLoggedIn()) {
@@ -43,10 +46,19 @@ export class HomeComponent implements OnInit {
           }
         }
       };
-      this.httpCallServiceService.PUT(this.APIUrl, param)
+      this.httpCallServiceService.POST(this.APIUrl, JSON.stringify(param))
         .subscribe((res) => {
-          this.user.age = res.Item.age;
-          this.user.favoritePet = res.Item.favoritePet;
+          const responseBody = JSON.parse(res.body);
+          if (responseBody.Item.hasOwnProperty('age')) {
+            this.user.age = responseBody.Item.age;
+          }
+          if (responseBody.Item.hasOwnProperty('favoritePet')) {
+            this.user.favoritePet = responseBody.Item.favoritePet;
+          }
+          if (responseBody.Item.hasOwnProperty('wishlist')) {
+            this.user.wishList = JSON.parse(responseBody.Item.wishlist);
+            console.log(this.user.wishList);
+          }
         });
     } catch (error) {
       console.log(error);
@@ -67,17 +79,23 @@ export class HomeComponent implements OnInit {
         Key: {
           username: this.user.username
         },
-        UpdateExpression: 'set favoritePet=:f',
+        UpdateExpression: 'set favoritePet=:f, age=:g, wishlist=:e',
         ExpressionAttributeValues: {
-          ':f': this.user.favoritePet
+          ':f': this.user.favoritePet,
+          ':g': this.user.age,
+          ':e': JSON.stringify(this.user.wishList),
         },
         ReturnValues: 'UPDATED_NEW'
       }
     };
-    this.httpCallServiceService.PUT(this.APIUrl, param)
+    this.httpCallServiceService.POST(this.APIUrl, JSON.stringify(param))
       .subscribe((res) => {
         window.location.reload();
       });
+  }
+
+  onChangeWishList(index, event): void {
+    this.user.wishList[index] = event;
   }
 
 }

@@ -18,7 +18,15 @@
     <th><label style="float: left"><b>Favorite Pet:</b></label></th>
     <th><input style="float: right; width: 25%" type="text" placeholder="Enter Your Favorite Pet" [(ngModel)]="user.favoritePet"></th>
   </tr>
-
+  <tr>
+    <label style="float: left"><b>Wish List:</b></label>
+    <div *ngFor="let wish of user.wishList; let i = index">
+      <input style="float: left"
+             type="text"
+             placeholder="Enter Your Wish List"
+             [ngModel]="wish" (ngModelChange)="onChangeWishList(i, $event)">
+    </div>
+  </tr>
 </table>
 <div class="container">
   <span class="clearfix">

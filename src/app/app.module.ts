@@ -2,11 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import Amplify, { Auth } from 'aws-amplify';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './AuthenticationComponents/login/login.component';
+import { HttpCallServiceService } from './http-call-service.service';
+
 // Material Library
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { UserInfoComponent } from './user-info/user-info.component';
@@ -96,7 +97,7 @@ Amplify.configure({
     AmplifyUIAngularModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [HttpCallServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

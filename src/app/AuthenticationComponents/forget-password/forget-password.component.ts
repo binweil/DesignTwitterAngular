@@ -43,4 +43,8 @@ export class ForgetPasswordComponent implements OnInit {
     this.isAlertMessageVisible = false;
   }
 
+  cancel(): void{
+    window.location.href = '/';
+  }
+
 }

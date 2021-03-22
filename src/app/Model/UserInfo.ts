@@ -7,4 +7,5 @@ export interface UserInfo {
   email?: string;
   favoritePet?: string;
   metaData?: string;
+  wishList?: [''];
 }
