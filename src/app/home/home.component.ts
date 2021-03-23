@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { HttpCallServiceService } from '../http-call-service.service';
+import { HttpClientService } from '../HttpComponents/http-client.service';
 import { Auth } from 'aws-amplify';
 import { UserInfo } from '../Model/UserInfo';
 import Util from '../utility/util';
@@ -14,7 +14,7 @@ import { DynamodbUpdateRequest } from '../Model/DynamodbUpdateRequest';
 export class HomeComponent implements OnInit {
 
   constructor(
-    private httpCallServiceService: HttpCallServiceService) {
+    private httpClientService: HttpClientService) {
   }
 
   user: UserInfo = {
@@ -27,10 +27,8 @@ export class HomeComponent implements OnInit {
 
   wishList: [];
 
-  APIUrl = 'https://z002cbm7ih.execute-api.us-west-2.amazonaws.com/Beta';
-
-  ngOnInit(): void {
-    if (!Util.isUserLoggedIn()) {
+  async ngOnInit(): Promise<void> {
+    if (!await Util.isUserLoggedIn()) {
       window.location.href = '/login';
     }
     const loggedUser = JSON.parse(Util.getUserCredentialFromSessionInString());
@@ -46,7 +44,7 @@ export class HomeComponent implements OnInit {
           }
         }
       };
-      this.httpCallServiceService.POST(this.APIUrl, JSON.stringify(param))
+      this.httpClientService.POST(Util.API_URL, JSON.stringify(param))
         .subscribe((res) => {
           const responseBody = JSON.parse(res.body);
           if (responseBody.Item.hasOwnProperty('age')) {
@@ -88,14 +86,18 @@ export class HomeComponent implements OnInit {
         ReturnValues: 'UPDATED_NEW'
       }
     };
-    this.httpCallServiceService.POST(this.APIUrl, JSON.stringify(param))
+    this.httpClientService.POST(Util.API_URL, JSON.stringify(param))
       .subscribe((res) => {
         window.location.reload();
       });
   }
 
   onChangeWishList(index, event): void {
-    this.user.wishList[index] = event;
+    this.user.wishList[index] = event.target.value;
+  }
+
+  addWish(): void {
+    this.user.wishList.push('');
   }
 
 }

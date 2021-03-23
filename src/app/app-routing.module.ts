@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { SignupComponent } from './AuthenticationComponents/signup/signup.component';
 import { ChangePasswordComponent } from './AuthenticationComponents/change-password/change-password.component';
 import {ForgetPasswordComponent} from './AuthenticationComponents/forget-password/forget-password.component';
+import {SharedListComponent} from './shared-list/shared-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'changePassword', component: ChangePasswordComponent },
   { path: 'forgetPassword', component: ForgetPasswordComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'shared-list/:userA/:userB', component: SharedListComponent}
 ];
 
 @NgModule({

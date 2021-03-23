@@ -1,3 +1,4 @@
+import { Auth } from 'aws-amplify';
 
 export default class Util {
 
@@ -8,6 +9,7 @@ export default class Util {
   public static DYNAMODB_LAMBDA_REQUEST_TYPE_READ = 'read';
   public static DYNAMODB_LAMBDA_REQUEST_TYPE_UPDATE = 'update';
   public static DYNAMODB_LAMBDA_REQUEST_TYPE_CREATE = 'create';
+  public static API_URL = 'https://z002cbm7ih.execute-api.us-west-2.amazonaws.com/Beta';
 
   static setCookie(name: string, val: string): void {
     const date = new Date();
@@ -39,8 +41,9 @@ export default class Util {
     document.cookie = name + '=; expires=' + date.toUTCString() + '; path=/';
   }
 
-  static isUserLoggedIn(): boolean {
-    if (sessionStorage.getItem('twitterApp') != null) {
+  static async isUserLoggedIn(): Promise<boolean> {
+    const isSignedIn = await Auth.currentUserInfo();
+    if ((isSignedIn != null) && (sessionStorage.getItem('twitterApp') != null)) {
       return true;
     }
     return false;

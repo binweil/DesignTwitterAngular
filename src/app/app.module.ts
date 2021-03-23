@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './AuthenticationComponents/login/login.component';
-import { HttpCallServiceService } from './http-call-service.service';
+import { HttpClientService } from './HttpComponents/http-client.service';
 
 // Material Library
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -18,6 +18,8 @@ import {AmplifyUIAngularModule} from '@aws-amplify/ui-angular';
 import { ChangePasswordComponent } from './AuthenticationComponents/change-password/change-password.component';
 import { ForgetPasswordComponent } from './AuthenticationComponents/forget-password/forget-password.component';
 import { AlertBannerComponent } from './utility/alert-banner/alert-banner.component';
+import {CommonModule} from '@angular/common';
+import { SharedListComponent } from './shared-list/shared-list.component';
 
 Amplify.configure({
   Auth: {
@@ -87,7 +89,8 @@ Amplify.configure({
     SignupComponent,
     ChangePasswordComponent,
     ForgetPasswordComponent,
-    AlertBannerComponent
+    AlertBannerComponent,
+    SharedListComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -96,8 +99,9 @@ Amplify.configure({
     HttpClientModule,
     AmplifyUIAngularModule,
     FormsModule,
+    CommonModule
   ],
-  providers: [HttpCallServiceService],
+  providers: [HttpClientService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

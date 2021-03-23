@@ -30,7 +30,7 @@ export class ChangePasswordComponent implements OnInit {
       await Auth.changePassword(user, this.user.oldPassword, this.user.password);
       window.location.href = '/';
     } catch (error) {
-      this.alertMessage = error.log;
+      this.alertMessage = JSON.stringify(error);
       this.isAlertMessageVisible = true;
       console.log('Error in changing password: ', error);
     }

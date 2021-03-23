@@ -1,3 +1,4 @@
+<a style="float: right" href="/changePassword">Change Password</a>
 <div class="imgContainer" xmlns="http://www.w3.org/1999/html">
   <img src="../../../assets/Avatar/login_avatar_male.png" alt="Avatar" class="avatar">
 </div>
@@ -12,20 +13,25 @@
   </tr>
   <tr>
     <th><label style="float: left"><b>Age:</b></label></th>
-    <th><input style="float: right; width: 25%" type="text" placeholder="Enter Your Age" [(ngModel)]="user.age"></th>
+    <th><input style="float: right; width: 100px" type="text" placeholder="Enter Your Age" [(ngModel)]="user.age"></th>
   </tr>
   <tr>
     <th><label style="float: left"><b>Favorite Pet:</b></label></th>
-    <th><input style="float: right; width: 25%" type="text" placeholder="Enter Your Favorite Pet" [(ngModel)]="user.favoritePet"></th>
+    <th><input style="float: right; width: 100px" type="text" placeholder="Enter Your Favorite Pet" [(ngModel)]="user.favoritePet"></th>
   </tr>
   <tr>
-    <label style="float: left"><b>Wish List:</b></label>
-    <div *ngFor="let wish of user.wishList; let i = index">
-      <input style="float: left"
-             type="text"
-             placeholder="Enter Your Wish List"
-             [ngModel]="wish" (ngModelChange)="onChangeWishList(i, $event)">
+    <div>
+      <label style="float:left; align-content: center; padding: 1px; margin: 1px;"><b>Wish List: </b></label>
+      <button style="background: red; width: 40px; height: 20px; padding:1px; margin:1px;" (click)="addWish()">
+        Add
+      </button>
     </div>
+
+    <input *ngFor="let wish of user.wishList; let i = index"
+           style="float: left"
+           type="text"
+           placeholder="Enter Your Wish List"
+           [value]="user.wishList[i]" (change)="onChangeWishList(i, $event)">
   </tr>
 </table>
 <div class="container">

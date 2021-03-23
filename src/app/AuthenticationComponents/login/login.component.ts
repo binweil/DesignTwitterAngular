@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem(Util.APP_SESSION_STORAGE_KEY, JSON.stringify(user));
       window.location.href = '/home';
     } catch (error) {
-      this.alertMessage = error.log || error.message;
+      this.alertMessage = JSON.stringify(error);
       this.isAlertMessageVisible = true;
       console.log('error signing in', error);
     }
@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
       Util.deleteCookie(Util.JWT_TOKEN);
       sessionStorage.removeItem(Util.APP_SESSION_STORAGE_KEY);
     } catch (error) {
-      this.alertMessage = error.log || error.message;
+      this.alertMessage = JSON.stringify(error);
       this.isAlertMessageVisible = true;
       console.log('error signing out: ', error);
     }

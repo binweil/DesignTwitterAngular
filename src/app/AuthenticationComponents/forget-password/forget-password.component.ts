@@ -34,7 +34,7 @@ export class ForgetPasswordComponent implements OnInit {
     } catch (error) {
       console.log(error.log);
       this.isAlertMessageVisible = true;
-      this.alertMessage = 'Error in resetting password - ' + error.log;
+      this.alertMessage = JSON.stringify(error);
     }
   }
 

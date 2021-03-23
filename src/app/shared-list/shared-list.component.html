@@ -1,0 +1,6 @@
+<div *ngFor="let item of sharedList; let i = index">
+  <input style="display: inline-block;"
+         type="text"
+         placeholder="Enter Your Wish List"
+         [value]="sharedList[i]" (change)="onchange(i,$event)">
+</div>

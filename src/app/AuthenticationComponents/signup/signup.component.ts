@@ -34,7 +34,7 @@ export class SignupComponent implements OnInit {
       const { user } = await Auth.signUp(this.signUpRequest);
       this.showConfirmationCodeModel = true;
     } catch (error) {
-      this.alertMessage = error.log;
+      this.alertMessage = JSON.stringify(error);
       this.isAlertMessageVisible = true;
       console.log('error signing up:', error);
     }
@@ -50,7 +50,7 @@ export class SignupComponent implements OnInit {
       await Auth.confirmSignUp(this.signUpRequest.username, this.confirmationCode);
       window.location.href = '/';
     } catch (error) {
-      this.alertMessage = 'Error in signing up';
+      this.alertMessage = JSON.stringify(error);
       this.isAlertMessageVisible = true;
       console.log('error signing up:', error);
     }
