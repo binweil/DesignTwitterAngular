@@ -1,42 +1,45 @@
-<a style="float: right" href="/changePassword">Change Password</a>
-<div class="imgContainer" xmlns="http://www.w3.org/1999/html">
-  <img src="../../../assets/Avatar/login_avatar_male.png" alt="Avatar" class="avatar">
-</div>
-<table style="width: 100%; text-align: center;">
-  <tr>
-    <th><label style="float: left"><b>Username:</b></label></th>
-    <th><label style="float: right"><b>{{user.username}}</b></label></th>
-  </tr>
-  <tr>
-    <th><label style="float: left"><b>Email:</b></label></th>
-    <th><label style="float: right"><b>{{user.email}}</b></label></th>
-  </tr>
-  <tr>
-    <th><label style="float: left"><b>Age:</b></label></th>
-    <th><input style="float: right; width: 100px" type="text" placeholder="Enter Your Age" [(ngModel)]="user.age"></th>
-  </tr>
-  <tr>
-    <th><label style="float: left"><b>Favorite Pet:</b></label></th>
-    <th><input style="float: right; width: 100px" type="text" placeholder="Enter Your Favorite Pet" [(ngModel)]="user.favoritePet"></th>
-  </tr>
-  <tr>
-    <div>
-      <label style="float:left; align-content: center; padding: 1px; margin: 1px;"><b>Wish List: </b></label>
-      <button style="background: red; width: 40px; height: 20px; padding:1px; margin:1px;" (click)="addWish()">
-        Add
-      </button>
-    </div>
+<app-spinner display="{{isSpinnerVisible}}"></app-spinner>
+<div>
+  <a style="float: right" href="/changePassword">Change Password</a>
+  <div class="imgContainer" xmlns="http://www.w3.org/1999/html">
+    <img src="../../../assets/Avatar/login_avatar_male.png" alt="Avatar" class="avatar">
+  </div>
+  <table style="width: 100%; text-align: center;">
+    <tr>
+      <th><label style="float: left"><b>Username:</b></label></th>
+      <th><label style="float: right"><b>{{user.username}}</b></label></th>
+    </tr>
+    <tr>
+      <th><label style="float: left"><b>Email:</b></label></th>
+      <th><label style="float: right"><b>{{user.email}}</b></label></th>
+    </tr>
+    <tr>
+      <th><label style="float: left"><b>Age:</b></label></th>
+      <th><input style="float: right; width: 100px" type="text" placeholder="Enter Your Age" [(ngModel)]="user.age"></th>
+    </tr>
+    <tr>
+      <th><label style="float: left"><b>Favorite Pet:</b></label></th>
+      <th><input style="float: right; width: 100px" type="text" placeholder="Enter Your Favorite Pet" [(ngModel)]="user.favoritePet"></th>
+    </tr>
+    <tr>
+      <div>
+        <label style="float:left; align-content: center; padding: 1px; margin: 1px;"><b>Wish List: </b></label>
+        <button style="background: red; width: 40px; height: 20px; padding:1px; margin:1px;" (click)="addWish()">
+          Add
+        </button>
+      </div>
 
-    <input *ngFor="let wish of user.wishList; let i = index"
-           style="float: left"
-           type="text"
-           placeholder="Enter Your Wish List"
-           [value]="user.wishList[i]" (change)="onChangeWishList(i, $event)">
-  </tr>
-</table>
-<div class="container">
+      <input *ngFor="let wish of user.wishList; let i = index"
+             style="float: left"
+             type="text"
+             placeholder="Enter Your Wish List"
+             [value]="user.wishList[i]" (change)="onChangeWishList(i, $event)">
+    </tr>
+  </table>
+  <div class="container">
   <span class="clearfix">
     <button class="updateButton" (click)="update()">Update Info</button>
     <button class="logoutButton" (click)="logout()">Log Out</button>
   </span>
+  </div>
 </div>

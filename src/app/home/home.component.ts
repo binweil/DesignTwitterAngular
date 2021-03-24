@@ -27,6 +27,8 @@ export class HomeComponent implements OnInit {
 
   wishList: [];
 
+  isSpinnerVisible = true;
+
   async ngOnInit(): Promise<void> {
     if (!await Util.isUserLoggedIn()) {
       window.location.href = '/login';
@@ -57,6 +59,7 @@ export class HomeComponent implements OnInit {
             this.user.wishList = JSON.parse(responseBody.Item.wishlist);
             console.log(this.user.wishList);
           }
+          this.isSpinnerVisible = false;
         });
     } catch (error) {
       console.log(error);
@@ -70,6 +73,7 @@ export class HomeComponent implements OnInit {
   }
 
   update(): void {
+    this.isSpinnerVisible = true;
     const param: DynamodbUpdateRequest = {
       operation: Util.DYNAMODB_LAMBDA_REQUEST_TYPE_UPDATE,
       payload: {
@@ -89,6 +93,7 @@ export class HomeComponent implements OnInit {
     this.httpClientService.POST(Util.API_URL, JSON.stringify(param))
       .subscribe((res) => {
         window.location.reload();
+        this.isSpinnerVisible = false;
       });
   }
 

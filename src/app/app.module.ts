@@ -17,9 +17,10 @@ import { SignupComponent } from './AuthenticationComponents/signup/signup.compon
 import {AmplifyUIAngularModule} from '@aws-amplify/ui-angular';
 import { ChangePasswordComponent } from './AuthenticationComponents/change-password/change-password.component';
 import { ForgetPasswordComponent } from './AuthenticationComponents/forget-password/forget-password.component';
-import { AlertBannerComponent } from './utility/alert-banner/alert-banner.component';
+import { AlertBannerComponent } from './UIComponents/alert-banner/alert-banner.component';
 import {CommonModule} from '@angular/common';
 import { SharedListComponent } from './shared-list/shared-list.component';
+import { SpinnerComponent } from './UIComponents/spinner/spinner.component';
 
 Amplify.configure({
   Auth: {
@@ -90,7 +91,8 @@ Amplify.configure({
     ChangePasswordComponent,
     ForgetPasswordComponent,
     AlertBannerComponent,
-    SharedListComponent
+    SharedListComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserAnimationsModule,
