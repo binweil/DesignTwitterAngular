@@ -63,6 +63,7 @@ export class HomeComponent implements OnInit {
         });
     } catch (error) {
       console.log(error);
+      this.isSpinnerVisible = false;
     }
   }
 
@@ -90,11 +91,16 @@ export class HomeComponent implements OnInit {
         ReturnValues: 'UPDATED_NEW'
       }
     };
-    this.httpClientService.POST(Util.API_URL, JSON.stringify(param))
-      .subscribe((res) => {
-        window.location.reload();
-        this.isSpinnerVisible = false;
-      });
+    try {
+      this.httpClientService.POST(Util.API_URL, JSON.stringify(param))
+        .subscribe((res) => {
+          window.location.reload();
+          this.isSpinnerVisible = false;
+        });
+    } catch (error) {
+      console.log(error);
+      this.isSpinnerVisible = false;
+    }
   }
 
   onChangeWishList(index, event): void {

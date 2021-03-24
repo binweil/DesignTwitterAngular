@@ -36,6 +36,10 @@ export class ChangePasswordComponent implements OnInit {
     }
   }
 
+  cancel(): void {
+    window.location.href = '/home';
+  }
+
   onChangeDismissAlert(): void {
     this.alertMessage = '';
     this.isAlertMessageVisible = false;

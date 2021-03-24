@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import Util from '../utility/util';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -8,6 +9,7 @@ const httpOptions = {
     'Access-Control-Allow-Headers': '*',
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Method': '*',
+    jwtToken: Util.getCookie('jwtToken')
   }),
 };
 
