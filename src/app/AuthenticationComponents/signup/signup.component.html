@@ -15,7 +15,11 @@
     <input type="text" placeholder="Enter Username" [(ngModel)]="signUpRequest.username">
 
     <label><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" [(ngModel)]="signUpRequest.password">
+    <div class="password-div">
+      <input type="password" placeholder="Enter Password" [(ngModel)]="signUpRequest.password">
+      <label>* Require minimum 8 characters with each of the following:
+        numbers, special character, uppercase letters, lowercase letters</label>
+    </div>
 
     <label>
       <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
