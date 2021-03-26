@@ -24,7 +24,9 @@ export class LoginComponent implements OnInit {
 
   async submit(): Promise<void> {
     try {
+      console.log('signing user in');
       const user = await Auth.signIn(this.user.username, this.user.password);
+      console.log(user.getSignInUserSession().getIdToken().getJwtToken());
       Util.setCookie(Util.JWT_TOKEN, user.getSignInUserSession().getIdToken().getJwtToken());
       sessionStorage.setItem(Util.APP_SESSION_STORAGE_KEY, JSON.stringify(user));
       window.location.href = '/home';

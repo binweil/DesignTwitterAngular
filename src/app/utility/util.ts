@@ -19,7 +19,7 @@ export default class Util {
     date.setTime(date.getTime() + (7 * 24 * 60 * 60 * 1000));
 
     // Set it
-    document.cookie = name + '=' + value + '; expires=' + date.toUTCString() + '; domain=localhost; path=/';
+    document.cookie = name + '=' + value + '; expires=' + date.toUTCString() + '; path=/';
   }
 
   static getCookie(name: string): string {
