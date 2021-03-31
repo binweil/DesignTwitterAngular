@@ -1,6 +1,8 @@
-<div *ngFor="let item of sharedList; let i = index">
-  <input style="display: inline-block;"
-         type="text"
-         placeholder="Enter Your Wish List"
-         [value]="sharedList[i]" (change)="onchange(i,$event)">
-</div>
+<app-alert-banner [alertMessage]="alertMessage"
+                  [visible]="isAlertMessageVisible"
+                  (dismissEvent)="onChangeDismissAlert()">
+</app-alert-banner>
+<p><b>Share List</b></p>
+<ul class="w3-ul w3-hoverable">
+  <li *ngFor="let item of sharedList; let i = index">{{item}}</li>
+</ul>

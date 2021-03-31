@@ -5,11 +5,11 @@ export default class Util {
   public static JWT_TOKEN = 'jwtToken';
   public static APP_SESSION_STORAGE_KEY = 'twitterApp';
 
-  public static MINI_TWITTER_TABLE_NAME = 'mini-twitter-table';
+  public static MINI_TWITTER_TABLE_NAME = 'user-info-table';
   public static DYNAMODB_LAMBDA_REQUEST_TYPE_READ = 'read';
   public static DYNAMODB_LAMBDA_REQUEST_TYPE_UPDATE = 'update';
   public static DYNAMODB_LAMBDA_REQUEST_TYPE_CREATE = 'create';
-  public static API_URL = 'https://z002cbm7ih.execute-api.us-west-2.amazonaws.com/Beta';
+  public static API_URL = 'https://wikkfky04f.execute-api.us-east-1.amazonaws.com/prod/';
 
   static setCookie(name: string, val: string): void {
     const date = new Date();

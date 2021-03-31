@@ -9,7 +9,7 @@ const httpOptions = {
     'Access-Control-Allow-Headers': '*',
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Method': '*',
-    jwtToken: Util.getCookie(Util.JWT_TOKEN)
+    Authorization: Util.getCookie(Util.JWT_TOKEN)
   }),
 };
 

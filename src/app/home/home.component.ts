@@ -38,6 +38,7 @@ export class HomeComponent implements OnInit {
     this.user.email = loggedUser.attributes.email;
     try {
       const param: DynamodbGetRequest = {
+        username: this.user.username,
         operation: Util.DYNAMODB_LAMBDA_REQUEST_TYPE_READ,
         payload: {
           TableName: Util.MINI_TWITTER_TABLE_NAME,
@@ -46,18 +47,19 @@ export class HomeComponent implements OnInit {
           }
         }
       };
-      this.httpClientService.POST(Util.API_URL, JSON.stringify(param))
+      this.httpClientService.POST(Util.API_URL + 'UserInfo', JSON.stringify(param))
         .subscribe((res) => {
-          const responseBody = JSON.parse(res.body);
-          if (responseBody.Item.hasOwnProperty('age')) {
-            this.user.age = responseBody.Item.age;
-          }
-          if (responseBody.Item.hasOwnProperty('favoritePet')) {
-            this.user.favoritePet = responseBody.Item.favoritePet;
-          }
-          if (responseBody.Item.hasOwnProperty('wishlist')) {
-            this.user.wishList = JSON.parse(responseBody.Item.wishlist);
-            console.log(this.user.wishList);
+          const responseBody = res;
+          if (responseBody.hasOwnProperty('Item')) {
+            if (responseBody.Item.hasOwnProperty('age')) {
+              this.user.age = responseBody.Item.age;
+            }
+            if (responseBody.Item.hasOwnProperty('favoritePet')) {
+              this.user.favoritePet = responseBody.Item.favoritePet;
+            }
+            if (responseBody.Item.hasOwnProperty('wishlist')) {
+              this.user.wishList = responseBody.Item.wishlist;
+            }
           }
           this.isSpinnerVisible = false;
         });
@@ -75,6 +77,13 @@ export class HomeComponent implements OnInit {
 
   update(): void {
     this.isSpinnerVisible = true;
+    const wishList = [];
+    for (const item of this.user.wishList) {
+      if (item !== '' && item !== null) {
+        wishList.push(item);
+      }
+    }
+    console.log(wishList);
     const param: DynamodbUpdateRequest = {
       operation: Util.DYNAMODB_LAMBDA_REQUEST_TYPE_UPDATE,
       payload: {
@@ -86,13 +95,13 @@ export class HomeComponent implements OnInit {
         ExpressionAttributeValues: {
           ':f': this.user.favoritePet,
           ':g': this.user.age,
-          ':e': JSON.stringify(this.user.wishList),
+          ':e': wishList
         },
         ReturnValues: 'UPDATED_NEW'
       }
     };
     try {
-      this.httpClientService.POST(Util.API_URL, JSON.stringify(param))
+      this.httpClientService.POST(Util.API_URL + 'UserInfo', JSON.stringify(param))
         .subscribe((res) => {
           window.location.reload();
           this.isSpinnerVisible = false;
